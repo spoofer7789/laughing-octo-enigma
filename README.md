@@ -1,1 +1,6 @@
-# laughing-octo-enigma
+# redesigned-eureka
+- [] Create the fucking navbar.
+- [] 
+- []
+- []
+- []
