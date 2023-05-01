@@ -8,7 +8,7 @@ edition = "2021"
 crate-type = ["cdylib","rlib"]
 [dependencies]
 reqwasm = "0.5.0"
-serde = { version = "1.0.160", features = ["serde_derive"] }
+serde = { version = "1.0.160", features = ["serde_derive", "derive"] }
 yew = { version = "0.20.0", features = ["csr"] }
 yew-router = "0.17.0"
 yew-ethereum-provider = { git = "https://github.com/monomadic/yew-ethereum-provider" }
@@ -21,7 +21,11 @@ yew_form = "0.1.7"
 serde-wasm-bindgen = "0.5.0"
 wasm-bindgen = { version = "0.2.84", features = ["serde-serialize"] }
 wasm-bindgen-futures = "0.4.34"
+web3 = { git = "https://github.com/monomadic/rust-web3", default-features = false, features = ["http-rustls-tls", "wasm", "eip-1193"] }
+
 serde_json = "1.0.96"
+log = "0.4.17"
+wasm-logger = "0.2.0"
 [dependencies.web-sys]
 version = "0.3.61"
 features = [

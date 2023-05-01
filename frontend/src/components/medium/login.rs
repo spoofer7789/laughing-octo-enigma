@@ -13,7 +13,7 @@ struct LoginData {
     password: String,
 }
 
-#[function_component(Login)]
+#[function_component(Loginform)]
 pub fn login() -> Html {
     let user = use_state(|| "".to_string());
     let pass = use_state(|| "".to_string());

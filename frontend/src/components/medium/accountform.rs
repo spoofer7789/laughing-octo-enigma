@@ -9,24 +9,27 @@ use yew::events::SubmitEvent;
 use serde_json;
 #[derive(Debug, Serialize)]
 struct LoginData {
+    email: String,
     username: String,
     password: String,
 }
 
 #[function_component]
 pub fn Accountform() -> Html {
+    let emal = use_state(|| "".to_string());
     let user = use_state(|| "".to_string());
     let pass = use_state(|| "".to_string());
     let error = use_state(|| "".to_string());
 
     let onsubmit = {
+        let emal = emal.clone();
         let user = user.clone();
         let pass = pass.clone();
         let error = error.clone();
         Callback::from(move |e: SubmitEvent| {
             // Prevent the default behavior of form submission
             e.prevent_default();
-    
+            let emal = emal.clone();
             let user = user.clone();
             let pass = pass.clone();
             let error = error.clone();
@@ -35,6 +38,7 @@ pub fn Accountform() -> Html {
                     .header("Content-Type", "application/json")
                     .body(JsValue::from_str(
                         &serde_json::to_string(&LoginData {
+                            email: (*emal).to_string(),
                             username: (*user).to_string(),
                             password: (*pass).to_string(),
                         })
@@ -42,11 +46,25 @@ pub fn Accountform() -> Html {
                     ))
                     .send()
                     .await;
-                    
+                match resp {
+                    Ok(response) => {
+                        // Handle the response here
+                    }
+                    Err(err) => {
+                        // Handle the error here
+                        error.set(format!("Error: {:?}", err));
+                    }
+                }
             });
         })
     };
-
+    let emal_onchange = {
+        let emal = emal.clone();
+        Callback::from(move |e: Event| {
+            let input: HtmlInputElement = e.target_unchecked_into();
+            emal.set(input.value());
+        })
+    };
     let user_onchange = {
         let user = user.clone();
         Callback::from(move |e: Event| {
@@ -84,11 +102,17 @@ pub fn Accountform() -> Html {
                                         }
                                         <form {onsubmit}>
                                             <div class="field">
-                                                <label class="label">{"Username"}</label>
+                                                <label class="label">{"Email"}</label>
                                                 <div class="control">
-                                                    <input onchange={user_onchange} value={(*user).clone()} class="input" type="text" placeholder="username" />
+                                                    <input onchange={emal_onchange} value={(*emal).clone()} class="input" type="text" placeholder="example@email.com" />
                                                 </div>
                                             </div>
+                                            <div class="field">
+                                            <label class="label">{"Username"}</label>
+                                            <div class="control">
+                                                <input onchange={user_onchange} value={(*user).clone()} class="input" type="text" placeholder="username" />
+                                            </div>
+                                        </div>
 
                                             <div class="field">
                                                 <label class="label">{"Password"}</label>

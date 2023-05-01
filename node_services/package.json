@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": "nodemon -x npm start",
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "ipfs": "^0.66.0",
+    "nodemon": "^2.0.22",
+    "orbit-db": "0.29.0"
+  },
+  "name": "node_services",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,8 +1,8 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
-use crate::views::pages::createaccount::CreateAccount;
+use crate::views::pages::{createaccount::CreateAccount, login::Login};
 use crate::{routes::search::*,components::medium::web3::Web3Login};
-use crate::components::medium::login::Login;
+
 
 
 use super::search::{SearchRoute,switch_search};
@@ -12,7 +12,7 @@ pub enum MainRoute {
     Home,
     #[at("/login")]
     Login,
-    #[at("/web3_sign_in")]
+    #[at("/web3login")]
     Web3Login,
     #[at("/createaccount")]
     CreateAccount,
