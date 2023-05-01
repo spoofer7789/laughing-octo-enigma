@@ -7,6 +7,9 @@ node_modules/
 /backend/target/
 /frontend/Cargo.lock
 /backend/Cargo.lock
+/node_services/node_modules
+/node_services/ipfs
+/node_services/orbitdb
 # Remove Cargo.lock from gitignore if creating an executable, leave it for libraries
 # More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
 Cargo.lock
